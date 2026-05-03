@@ -1,0 +1,5 @@
+{
+    "name": "Calculator",
+    "description": "Basic calculator with arithmetic, factorial, grade, and conversion operations.",
+    "test_file": "test_calculator.py"
+}

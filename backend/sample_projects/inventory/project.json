@@ -1,0 +1,5 @@
+{
+    "name": "Inventory Manager",
+    "description": "Product inventory with stock tracking, pricing, discounts, and low-stock alerts.",
+    "test_file": "test_inventory.py"
+}

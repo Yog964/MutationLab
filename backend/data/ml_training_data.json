@@ -1,0 +1,222 @@
+[
+  {
+    "architecture": "microservices",
+    "project_type": "student_result",
+    "mutation_score": 9.1,
+    "execution_time": 7736,
+    "code_coverage": 85,
+    "complexity": 15,
+    "equivalent_rate": 9.1,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "layered",
+    "project_type": "student_result",
+    "mutation_score": 11.1,
+    "execution_time": 6103,
+    "code_coverage": 92,
+    "complexity": 8,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "mvc",
+    "project_type": "student_result",
+    "mutation_score": 11.1,
+    "execution_time": 5981,
+    "code_coverage": 89,
+    "complexity": 10,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "event_driven",
+    "project_type": "student_result",
+    "mutation_score": 11.1,
+    "execution_time": 6090,
+    "code_coverage": 88,
+    "complexity": 14,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "hexagonal",
+    "project_type": "student_result",
+    "mutation_score": 11.1,
+    "execution_time": 5873,
+    "code_coverage": 94,
+    "complexity": 12,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "mvc",
+    "project_type": "inventory",
+    "mutation_score": 53.8,
+    "execution_time": 8094,
+    "code_coverage": 89,
+    "complexity": 10,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "event_driven",
+    "project_type": "inventory",
+    "mutation_score": 60.0,
+    "execution_time": 10360,
+    "code_coverage": 88,
+    "complexity": 14,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "mvc",
+    "project_type": "student_result",
+    "mutation_score": 11.1,
+    "execution_time": 6374,
+    "code_coverage": 89,
+    "complexity": 10,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "layered",
+    "project_type": "student_result",
+    "mutation_score": 11.1,
+    "execution_time": 6743,
+    "code_coverage": 92,
+    "complexity": 8,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "microservices",
+    "project_type": "student_result",
+    "mutation_score": 9.1,
+    "execution_time": 7710,
+    "code_coverage": 85,
+    "complexity": 15,
+    "equivalent_rate": 9.1,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "event_driven",
+    "project_type": "student_result",
+    "mutation_score": 11.1,
+    "execution_time": 6337,
+    "code_coverage": 88,
+    "complexity": 14,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "layered",
+    "project_type": "calculator",
+    "mutation_score": 100.0,
+    "execution_time": 13673,
+    "code_coverage": 92,
+    "complexity": 8,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "mvc",
+    "project_type": "calculator",
+    "mutation_score": 59.1,
+    "execution_time": 14451,
+    "code_coverage": 89,
+    "complexity": 10,
+    "equivalent_rate": 4.5,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "event_driven",
+    "project_type": "calculator",
+    "mutation_score": 96.6,
+    "execution_time": 20702,
+    "code_coverage": 88,
+    "complexity": 14,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "mvc",
+    "project_type": "todo_app",
+    "mutation_score": 100.0,
+    "execution_time": 3780,
+    "code_coverage": 89,
+    "complexity": 10,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "event_driven",
+    "project_type": "todo_app",
+    "mutation_score": 100.0,
+    "execution_time": 6200,
+    "code_coverage": 88,
+    "complexity": 14,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "hexagonal",
+    "project_type": "todo_app",
+    "mutation_score": 88.9,
+    "execution_time": 5683,
+    "code_coverage": 94,
+    "complexity": 12,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "layered",
+    "project_type": "todo_app",
+    "mutation_score": 80.0,
+    "execution_time": 6150,
+    "code_coverage": 92,
+    "complexity": 8,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "mvc",
+    "project_type": "todo_app",
+    "mutation_score": 100.0,
+    "execution_time": 3763,
+    "code_coverage": 89,
+    "complexity": 10,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "hexagonal",
+    "project_type": "todo_app",
+    "mutation_score": 88.9,
+    "execution_time": 6678,
+    "code_coverage": 94,
+    "complexity": 12,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "microservices",
+    "project_type": "todo_app",
+    "mutation_score": 100.0,
+    "execution_time": 3593,
+    "code_coverage": 85,
+    "complexity": 15,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "event_driven",
+    "project_type": "todo_app",
+    "mutation_score": 100.0,
+    "execution_time": 5617,
+    "code_coverage": 88,
+    "complexity": 14,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  }
+]

@@ -1,0 +1,5 @@
+{
+    "name": "Todo App",
+    "description": "Task management with priorities, completion tracking, and statistics.",
+    "test_file": "test_todo.py"
+}
