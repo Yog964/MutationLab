@@ -1,12 +1,20 @@
 """
 ML Analysis Service — calculates dynamic weighted scores and generates detailed reasoning.
+Trains on a 500-row CSV dataset (data/training_dataset.csv) for statistically robust predictions.
 """
 import math
+import os
 import numpy as np
 import pandas as pd
+from pathlib import Path
+import joblib
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingRegressor
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.model_selection import cross_val_score
+
+# Path to the 500-row training dataset CSV and saved model
+DATASET_PATH = Path(__file__).parent.parent / "data" / "training_dataset.csv"
+MODEL_PATH = Path(__file__).parent.parent / "data" / "trained_models.pkl"
 
 # Predefined strengths and weaknesses for architectures
 ARCH_KNOWLEDGE = {
@@ -34,7 +42,8 @@ ARCH_KNOWLEDGE = {
 
 
 class MLAnalysisService:
-    _TRAINING_DATA = [
+    # Fallback seed data — used ONLY if the CSV dataset file is missing
+    _FALLBACK_DATA = [
         ("layered", 78, 1200, 92.5, 12, 4.5, "high"),
         ("layered", 80, 1100, 91.0, 13, 5.0, "high"),
         ("mvc", 75, 1500, 89.3, 14, 5.2, "medium"),
@@ -53,13 +62,38 @@ class MLAnalysisService:
         self.classifier = RandomForestClassifier(n_estimators=100, random_state=42, max_depth=5)
         self.regressor = GradientBoostingRegressor(n_estimators=100, random_state=42, max_depth=4)
         self._is_trained = False
+        self._training_samples = 0
         self._train()
 
     def _train(self):
-        df = pd.DataFrame(self._TRAINING_DATA, columns=[
-            "architecture", "mutation_score", "execution_time",
-            "code_coverage", "complexity", "equivalent_rate", "effectiveness",
-        ])
+        """Load models from .pkl if available, else train on CSV and save."""
+        if MODEL_PATH.exists():
+            try:
+                saved = joblib.load(MODEL_PATH)
+                self.label_encoder = saved['label_encoder']
+                self.scaler = saved['scaler']
+                self.classifier = saved['classifier']
+                self.regressor = saved['regressor']
+                self._training_samples = saved.get('training_samples', 500)
+                self._is_trained = True
+                print(f"[ML] Loaded pre-trained models from {MODEL_PATH.name}")
+                return
+            except Exception as e:
+                print(f"[ML] Failed to load {MODEL_PATH.name}: {e}. Retraining...")
+
+        if DATASET_PATH.exists():
+            # ── Primary: Load from the 500-row CSV dataset ──
+            df = pd.read_csv(DATASET_PATH)
+            print(f"[ML] Training new model on {len(df)} rows from {DATASET_PATH.name}")
+        else:
+            # ── Fallback: Use the small hardcoded seed data ──
+            df = pd.DataFrame(self._FALLBACK_DATA, columns=[
+                "architecture", "mutation_score", "execution_time",
+                "code_coverage", "complexity", "equivalent_rate", "effectiveness",
+            ])
+            print(f"[ML] WARNING: CSV not found, training fallback model ({len(df)} rows)")
+
+        self._training_samples = len(df)
         df["arch_encoded"] = self.label_encoder.fit_transform(df["architecture"])
         feature_cols = ["mutation_score", "execution_time", "code_coverage",
                         "complexity", "equivalent_rate", "arch_encoded"]
@@ -67,6 +101,19 @@ class MLAnalysisService:
         self.classifier.fit(self.scaler.fit_transform(X), df["effectiveness"].values)
         self.regressor.fit(self.scaler.transform(X), df["mutation_score"].values)
         self._is_trained = True
+
+        # Save to pickle for future fast loading
+        try:
+            joblib.dump({
+                'label_encoder': self.label_encoder,
+                'scaler': self.scaler,
+                'classifier': self.classifier,
+                'regressor': self.regressor,
+                'training_samples': self._training_samples
+            }, MODEL_PATH)
+            print(f"[ML] Saved trained models to {MODEL_PATH.name}")
+        except Exception as e:
+            print(f"[ML] Warning: Could not save model to {MODEL_PATH.name}: {e}")
 
     def analyze(self, metrics_list: list[dict], weights: dict = None) -> dict:
         if not metrics_list:
@@ -104,7 +151,7 @@ class MLAnalysisService:
             "recommendation_details": recommendations,
             "feature_importance": feature_importance,
             "model_type": "RandomForest + GradientBoosting ensemble",
-            "training_samples": len(self._TRAINING_DATA),
+            "training_samples": self._training_samples,
         }
 
     def _predict_single(self, metrics: dict, weights: dict) -> dict:
@@ -197,18 +244,24 @@ class MLAnalysisService:
         }
 
     def get_cross_val_scores(self) -> dict:
-        df = pd.DataFrame(self._TRAINING_DATA, columns=[
-            "architecture", "mutation_score", "execution_time",
-            "code_coverage", "complexity", "equivalent_rate", "effectiveness",
-        ])
+        """Run cross-validation on the training dataset."""
+        if DATASET_PATH.exists():
+            df = pd.read_csv(DATASET_PATH)
+        else:
+            df = pd.DataFrame(self._FALLBACK_DATA, columns=[
+                "architecture", "mutation_score", "execution_time",
+                "code_coverage", "complexity", "equivalent_rate", "effectiveness",
+            ])
         df["arch_encoded"] = self.label_encoder.transform(df["architecture"])
         feature_cols = ["mutation_score", "execution_time", "code_coverage",
                         "complexity", "equivalent_rate", "arch_encoded"]
         X = self.scaler.transform(df[feature_cols].values)
         y = df["effectiveness"].values
-        scores = cross_val_score(self.classifier, X, y, cv=3, scoring="accuracy")
+        cv_folds = min(5, len(df))  # 5-fold CV with 500 rows
+        scores = cross_val_score(self.classifier, X, y, cv=cv_folds, scoring="accuracy")
         return {
             "mean_accuracy": round(float(scores.mean()), 4),
             "std_accuracy": round(float(scores.std()), 4),
             "fold_scores": [round(float(s), 4) for s in scores],
+            "total_samples": len(df),
         }

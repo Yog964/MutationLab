@@ -27,7 +27,7 @@ def get_ml_analysis(project_type: str = Query(None), weights: dict = Body(None))
 @router.get("/ml-analysis/model/info")
 def model_info():
     cv_scores = ml_service.get_cross_val_scores()
-    training_count = len(ml_service._TRAINING_DATA)
+    training_count = ml_service._training_samples
     # Include accumulated data count
     from services.experiment_runner import TRAINING_FILE
     accumulated = 0
