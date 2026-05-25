@@ -508,5 +508,155 @@
     "complexity": 14,
     "equivalent_rate": 0.0,
     "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "layered",
+    "project_type": "calculator",
+    "mutation_score": 100.0,
+    "execution_time": 20804,
+    "code_coverage": 43.8,
+    "complexity": 8,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "mvc",
+    "project_type": "calculator",
+    "mutation_score": 83.3,
+    "execution_time": 19817,
+    "code_coverage": 89,
+    "complexity": 10,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "event_driven",
+    "project_type": "calculator",
+    "mutation_score": 96.7,
+    "execution_time": 19763,
+    "code_coverage": 88,
+    "complexity": 14,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "layered",
+    "project_type": "calculator",
+    "mutation_score": 100.0,
+    "execution_time": 34965,
+    "code_coverage": 43.8,
+    "complexity": 8,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "event_driven",
+    "project_type": "calculator",
+    "mutation_score": 96.7,
+    "execution_time": 35784,
+    "code_coverage": 88,
+    "complexity": 14,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "hexagonal",
+    "project_type": "calculator",
+    "mutation_score": 83.3,
+    "execution_time": 38292,
+    "code_coverage": 94,
+    "complexity": 12,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "layered",
+    "project_type": "calculator",
+    "mutation_score": 100.0,
+    "execution_time": 31551,
+    "code_coverage": 43.8,
+    "complexity": 8,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "event_driven",
+    "project_type": "calculator",
+    "mutation_score": 96.7,
+    "execution_time": 33133,
+    "code_coverage": 88,
+    "complexity": 14,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "hexagonal",
+    "project_type": "calculator",
+    "mutation_score": 83.3,
+    "execution_time": 33067,
+    "code_coverage": 94,
+    "complexity": 12,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "microservices",
+    "project_type": "calculator",
+    "mutation_score": 73.3,
+    "execution_time": 32830,
+    "code_coverage": 85,
+    "complexity": 15,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "mvc",
+    "project_type": "calculator",
+    "mutation_score": 83.3,
+    "execution_time": 31638,
+    "code_coverage": 89,
+    "complexity": 10,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "hexagonal",
+    "project_type": "calculator",
+    "mutation_score": 83.3,
+    "execution_time": 26486,
+    "code_coverage": 94,
+    "complexity": 12,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "layered",
+    "project_type": "calculator",
+    "mutation_score": 100.0,
+    "execution_time": 32093,
+    "code_coverage": 43.8,
+    "complexity": 8,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 83.3
+  },
+  {
+    "architecture": "mvc",
+    "project_type": "calculator",
+    "mutation_score": 83.3,
+    "execution_time": 34075,
+    "code_coverage": 89,
+    "complexity": 10,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
+  },
+  {
+    "architecture": "hexagonal",
+    "project_type": "calculator",
+    "mutation_score": 83.3,
+    "execution_time": 34504,
+    "code_coverage": 94,
+    "complexity": 12,
+    "equivalent_rate": 0.0,
+    "test_pass_rate": 100.0
   }
 ]

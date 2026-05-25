@@ -122,6 +122,7 @@ class MLAnalysisService:
         # Dynamic weights (speed, quality, maintainability)
         if not weights:
             weights = {"speed": 0.2, "quality": 0.5, "maintainability": 0.3}
+        self._last_weights = weights
 
         project_type = metrics_list[0].get("project_type", "unknown")
 
@@ -209,13 +210,24 @@ class MLAnalysisService:
         }
 
     def _generate_recommendation_details(self, rankings: list[dict], best_arch: str, worst_arch: str) -> dict:
+        """Generate AI-powered recommendation using Groq LLM (Llama 3)."""
         if not rankings:
             return {}
 
         best = rankings[0]
         worst = rankings[-1]
 
-        # Generate "Why Recommended" reasons dynamically for the best
+        try:
+            from services.groq_service import generate_recommendation
+            result = generate_recommendation(best, worst, self._last_weights)
+            print(f"[ML] AI-generated recommendation via Groq (ai_generated={result.get('ai_generated')})")
+            return result
+        except Exception as e:
+            print(f"[ML] Groq unavailable ({e}), using rule-based fallback")
+            return self._fallback_recommendation(best, worst, best_arch, worst_arch)
+
+    def _fallback_recommendation(self, best: dict, worst: dict, best_arch: str, worst_arch: str) -> dict:
+        """Hardcoded rule-based fallback if Groq API is down."""
         why_recommended = []
         if best["quality_score"] > 85:
             why_recommended.append(f"Achieved exceptional Test Quality score ({best['quality_score']}/100) indicating strong test coverage and high mutant detection.")
@@ -225,7 +237,6 @@ class MLAnalysisService:
             why_recommended.append(f"High maintainability score ({best['maintainability_score']}/100) meaning the test suite will be easy to update as code changes.")
         why_recommended.append(f"Overall composite score perfectly balanced for the chosen priorities.")
 
-        # Generate "Why Not" for the worst
         why_not_recommended = []
         if worst["quality_score"] < 75:
             why_not_recommended.append(f"Poor Test Quality ({worst['quality_score']}/100) — too many mutants survived the test suite.")
@@ -240,7 +251,8 @@ class MLAnalysisService:
             "best_arch": best_arch,
             "why_recommended": why_recommended,
             "worst_arch": worst_arch,
-            "why_not_recommended": why_not_recommended
+            "why_not_recommended": why_not_recommended,
+            "ai_generated": False
         }
 
     def get_cross_val_scores(self) -> dict:
