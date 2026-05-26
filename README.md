@@ -1,4 +1,5 @@
 # 🧬 MutationLab: AI-Powered Architectural Testability Analyzer
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/e394b201-2d46-441a-ba8e-49fe1890d988" />
 
 An advanced, academic-grade experimental platform that compares how different software architectural patterns (MVC, Layered, Hexagonal, etc.) affect **Mutation Testing Effectiveness**. The system dynamically executes real AST-based mutation testing across multiple projects and uses Machine Learning to score, rank, and recommend the best architecture for testability, speed, and maintainability.
 
